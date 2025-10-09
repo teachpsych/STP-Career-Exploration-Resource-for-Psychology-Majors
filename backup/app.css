@@ -1,0 +1,370 @@
+/* Basic styling for the body */
+/* Visited link styling */
+
+
+
+a {
+    color: #d68100;
+    text-decoration: underline;
+}
+a:hover {
+    color: #ff8800;
+    text-decoration: underline;
+}
+a:visited {
+    color: #d1ff66; /* Change this to your preferred visited link color */
+}
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #000000;
+    color: #f4f4f4;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* General reset */
+* {
+    box-sizing: border-box;
+}
+
+/* Paragraph styling */
+p {
+    margin: 2px;
+    padding: 2px;
+    text-align: left;
+}
+
+/* Message box styling */
+.message {
+    padding: 20px;
+    background-color: #24293b;
+    border: 1px solid #ddd;
+    margin: 20px auto;
+    border-radius: 8px;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* List styling */
+ul, ol {
+    margin: 10px;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Header styling */
+h1, h2, h3 {
+    color: #f4f4f4;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.1em;
+}
+
+/* Container styling */
+.container {
+    padding: 10px;
+    margin: auto;
+    max-width: 1000px;
+    text-align: center;
+    background-color: #1f2a48;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Jobs list styling */
+#jobslist {
+    max-width: 1000px;
+    margin: 0 auto; /* Center-align #jobslist */
+    padding: 20px;
+    padding-inline-start: 0;
+    list-style-type: none;
+}
+
+/* Job section styling */
+.job-section {
+    background-color: #2a3b5a;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 20px auto;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-align: center; /* Aligns text center within each job-section */
+}
+
+/* Main category styling */
+.main-category {
+    color: #ff9900;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Job title styling */
+.job-title {
+    color: #00aaff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Link styling */
+.link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #1e2a45;
+    border-radius: 4px;
+    padding: 10px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.category {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.link a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+.link a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+}p[]
+
+.link a:visited{
+    color: #ff6666;
+}
+
+/* Search bar styling */
+#searchBar {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #222;
+    color: #f4f4f4;
+}
+
+#searchWrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#searchWrapper::after {
+    content: "🔍";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #f4f4f4;
+}
+
+/* Contact info box styling */
+.contact-info {
+    text-align: center;
+    line-height: 1.1;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+    background-color: #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+    text-align: center;
+    margin: 5px;
+}
+
+.contact-info a {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Video modal styling */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #000;
+}
+
+/* Video wrapper styling */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: auto;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    background: #000;
+    overflow: hidden; /* Hide overflow */
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* No border on the iframe */
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure thumbnail covers entire wrapper */
+    cursor: pointer;
+}
+
+.video-thumbnail:hover {
+    opacity: 0.8; /* Change opacity on hover */
+}
+
+/* Degree boxes styling */
+.degree {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+/* Degree box styling with colors */
+.degree-box {
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px auto; /* Centers within job-section */
+}
+
+.degree-box.blue {
+    background-color: #007bff; /* Blue for Bachelor’s degree */
+}
+
+.degree-box.green {
+    background-color: #28a745; /* Green for Graduate degree */
+}
+
+/* Table styling */
+table {
+    width: 60%;  /* Set table width to 60% */
+    border-collapse: collapse;
+    margin: 20px auto; /* Center-align the table */
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.9);
+}
+
+/* Table header styling */
+th {
+    border: 2px solid #000; /* Outline for headers */
+    color: white;
+    padding: 10px;
+    text-align: left;  /* Align text in headers to the left */
+}
+
+/* Table cell styling */
+td {
+    border: 2px solid #000; /* Outline for cells */
+    padding: 8px;  /* Reduced padding for less whitespace */
+    text-align: left;  /* Left-align text in cells */
+    white-space: nowrap;  /* Prevent text wrapping */
+}
+
+/* Wider first column */
+td:first-child, th:first-child {
+    width: 40%; /* Adjust this width as necessary for the first column */
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: #ff000015;
+}
+
+/* Responsive table */
+@media (max-width: 600px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* .image-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Add some spacing around the image */
+
+
+/* .centered-image {
+    max-width: 100%;
+    height: auto;
+} */ */
