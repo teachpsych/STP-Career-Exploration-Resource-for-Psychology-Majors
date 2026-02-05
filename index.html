@@ -23,6 +23,39 @@
         <p>
             For questions about this resource, please contact STP Vice President for Resources, Clara Cheng (<a href="mailto:vp-resources@teachpsych.org">vp-resources@teachpsych.org</a>), Virginia Wickline (<a href="mailto:vwickline@georgiasouthern.edu">vwickline@georgiasouthern.edu</a>), or Drew Appleby (<a href="mailto:dappleby@iu.edu">dappleby@iu.edu</a>).
         </p>
+<p>
+<div id="cell-value">Loading...</div>
+
+    <script>
+        // Replace with your actual Sheet ID
+        const sheetId = '1m6l6CyVdEtUPYgEpAJkC8Z-UoIzUpCOZbiA-tspXRoY';
+        // Specify the range (A1:A1 for just one cell)
+        const range = 'A2:A2'; 
+        
+        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&range=${range}`;
+
+        async function fetchCellValue() {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                // The API returns a weird prefix "/* google.visualization.Query.setResponse(...); */"
+                // We need to slice that off to get valid JSON
+                const jsonData = JSON.parse(text.substring(47).slice(0, -2));
+                
+                // Navigate the JSON tree to get the cell value
+                const value = jsonData.table.rows[0].c[0].v;
+                
+                document.getElementById('cell-value').innerText = "Number of visitors: " + value;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('cell-value').innerText = "Error loading data.";
+            }
+        }
+
+        fetchCellValue();
+    </script>
+</p>
     </header>
 
     <section>
