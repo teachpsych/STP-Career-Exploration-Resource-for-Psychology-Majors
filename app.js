@@ -77,6 +77,7 @@ const clearJobs = () => {
   foreground = null;
   floating = null;
   floatingHistory.length = 0;
+  syncFloatingControls();
   jobslist.replaceChildren();
   delete jobslist.dataset.lastCategory;
 };
@@ -171,6 +172,19 @@ const generateVideosHtml = (videos) => {
 let foreground = null;
 let floating = null;
 const floatingHistory = [];
+const floatingControls = document.createElement('div');
+floatingControls.className = 'floating-video-controls';
+const floatingCloseButton = document.createElement('button');
+floatingCloseButton.type = 'button';
+floatingCloseButton.className = 'floating-video-close';
+floatingCloseButton.setAttribute('aria-label', 'Close floating video');
+floatingCloseButton.textContent = '×';
+floatingControls.appendChild(floatingCloseButton);
+document.body.appendChild(floatingControls);
+
+const syncFloatingControls = () => {
+  floatingControls.classList.toggle('is-visible', Boolean(floating));
+};
 
 const commandPlayer = (player, command) => {
   player.shouldPlay = command === 'playVideo';
@@ -199,6 +213,7 @@ const restoreFloating = () => {
 
     floating = player;
     player.iframe.classList.add('is-floating');
+    syncFloatingControls();
     break;
   }
 };
@@ -209,6 +224,7 @@ const dockFloating = (player) => {
   floating = null;
   if (player !== foreground) pausePlayer(player);
   restoreFloating();
+  syncFloatingControls();
 };
 
 const promoteFloating = (player) => {
@@ -220,8 +236,19 @@ const promoteFloating = (player) => {
   }
   floating = player;
   player.iframe.classList.add('is-floating');
-  playPlayer(player);
+  syncFloatingControls();
 };
+
+floatingCloseButton.addEventListener('click', () => {
+  if (!floating) return;
+  const closed = floating;
+  closed.iframe.classList.remove('is-floating');
+  pausePlayer(closed);
+  floating = null;
+  floatingHistory.length = 0;
+  if (foreground === closed) foreground = null;
+  syncFloatingControls();
+});
 
 const handlePlayerVisibility = (player, entry) => {
   if (entry.isIntersecting) {

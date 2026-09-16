@@ -288,17 +288,88 @@ h3 {
 }
 .video-wrapper.is-paused .video-resume { display: block; }
 .video-resume:focus-visible { outline: 3px solid #ff9900; outline-offset: 3px; }
+/* The controls live in the document body; the iframe stays in its original wrapper. */
+:root {
+    --floating-video-left: max(12px, env(safe-area-inset-left));
+    --floating-video-top: max(12px, env(safe-area-inset-top));
+    --floating-video-width: min(320px, calc(100vw - 24px));
+}
+.floating-video-controls {
+    display: none;
+    position: fixed;
+    top: var(--floating-video-top);
+    left: var(--floating-video-left);
+    width: var(--floating-video-width);
+    height: 44px;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 10000;
+    background: rgba(0, 0, 0, .9);
+    border-radius: 8px 8px 0 0;
+}
+.floating-video-controls.is-visible { display: flex; }
+.floating-video-close {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    background: transparent;
+    font: 32px/1 Arial, sans-serif;
+    cursor: pointer;
+}
+.floating-video-close:hover, .floating-video-close:focus-visible {
+    background: #a12727;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+}
 .video-wrapper iframe.is-floating {
     position: fixed;
     inset: auto;
-    top: 16px;
-    left: 16px;
-    width: min(320px, calc(100vw - 32px));
+    top: calc(var(--floating-video-top) + 44px);
+    left: var(--floating-video-left);
+    width: var(--floating-video-width);
     height: auto;
     aspect-ratio: 16 / 9;
     z-index: 9999;
+    border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, .65);
     background: #000;
+}
+@media (max-width: 600px) {
+    body { margin: 8px; padding: 8px; }
+    .message { padding: 12px; margin: 8px auto; }
+    #jobslist { padding: 8px; }
+}
+/* Phone layout: let media fill the screen while keeping text comfortably readable. */
+@media (max-width: 500px) {
+    body { margin: 0; padding: 0 2px; }
+    .message { margin: 0 0 4px; padding: 2px; border-radius: 0; }
+    .container { width: 100%; max-width: none; padding: 0; border-radius: 0; }
+    #jobslist { width: 100%; max-width: none; margin: 0; padding: 0; }
+    .job-section { width: 100%; margin: 8px 0; padding: 2px 0; border-radius: 0; }
+    .videos-container, .video-wrapper { width: 100%; max-width: none; }
+    .video-wrapper { margin: 0 0 8px; }
+    .job-title, .degree-box { margin: 8px auto; }
+    .job-title { padding: 0 2px; font-size: 1.25rem; }
+    .degree-box { padding: 4px 6px; }
+    .main-category { margin: 8px 0 4px; font-size: 1.55rem; }
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.4rem; }
+    .container > h1 { margin: 8px 0; }
+    #searchWrapper { margin: 0 2px 4px; }
+    #searchBar { font-size: 16px; }
+    .links-list { margin: 4px 2px; padding: 0; }
+    .link { padding: 2px; margin-bottom: 4px; align-items: flex-start; overflow: visible; }
+    .link .category { flex: 0 1 auto; max-width: 30%; margin-right: 4px; overflow-wrap: anywhere; }
+    .link a { flex: 1 1 0; min-width: 0; overflow-wrap: anywhere; }
+    a { overflow-wrap: anywhere; }
+    .contact-info { margin: 4px auto; padding: 2px; }
+    .message ul, .message ol { margin: 4px 0; padding-inline-start: 18px; }
+}
+@media (max-height: 320px) {
+    :root { --floating-video-width: min(240px, calc(100vw - 24px)); }
 }
 
 /* Degree boxes styling */
@@ -379,6 +450,27 @@ tr:hover {
     }
 }
 
+
+/* Keep two-column quick-facts tables readable without sideways scrolling on phones. */
+@media (max-width: 500px) {
+    .jobs-table { min-width: 0; }
+    .jobs-table table {
+        display: table;
+        width: 100%;
+        margin: 8px 0;
+        table-layout: fixed;
+        overflow: visible;
+    }
+    .jobs-table th, .jobs-table td {
+        padding: 4px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        hyphens: auto;
+    }
+    .jobs-table th:first-child, .jobs-table td:first-child { width: 42%; }
+    .jobs-table th[colspan] { width: auto; }
+}
 
 .image-container {
     display: flex;
